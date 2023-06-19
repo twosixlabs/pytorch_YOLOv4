@@ -1,0 +1,65 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [
+  "hatchling >= 1.11.0",
+  "pip >= 22.0.0"
+]
+
+
+[project.scripts]
+pytorch_yolov4 = "examples.demo:main"
+
+
+[project]
+name            = "pytorch_yolov4"
+version         = "0.0.1"
+description     = "PyTorch ,ONNX and TensorRT implementation of YOLOv4"
+readme          = "README.md"
+license         = "Apache"
+requires-python = ">=3.8"
+
+authors = [
+  { name = "Tianxiaomo", email = "Tianxiaomo@github.com" },
+  { name = "Two Six Technologies", email = "armory@twosixtech.com" },
+]
+
+keywords = [ ]
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+  "numpy==1.18.2",
+  "torch==1.4.0",
+  "tensorboardX==2.0",
+  "scikit_image==0.16.2",
+  "matplotlib==2.2.3",
+  "tqdm==4.43.0",
+  "easydict==1.9",
+  "Pillow==7.1.2",
+  "opencv_python",
+  "pycocotools",
+]
+
+[project.urls]
+GitHub = "https://github.com/twosixlabs/pytorch_YOLOv4"
+
+
+[tool.hatch.build]
+ignore-vcs   = false
+reproducible = true
+directory    = "dist"
+sources      = [ "tool" ]
+include = [
+  "LICENSE",
+  "pyproject.toml",
+  "README.md"
+]
+
+
+[tool.hatch.metadata]
+allow-direct-references = true
