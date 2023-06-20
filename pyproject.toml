@@ -7,7 +7,7 @@ requires = [
 
 
 [project.scripts]
-pytorch_yolov4 = "examples.demo:main"
+pytorch_yolov4 = "pytorch_yolo.examples.demo:main"
 
 
 [project]
@@ -54,8 +54,8 @@ GitHub = "https://github.com/twosixlabs/pytorch_YOLOv4"
 ignore-vcs   = false
 reproducible = true
 directory    = "dist"
-sources      = [ "tool" ]
 include = [
+  "pytorch_yolo/",
   "LICENSE",
   "pyproject.toml",
   "README.md"
