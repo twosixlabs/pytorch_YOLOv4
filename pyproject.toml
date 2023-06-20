@@ -7,11 +7,11 @@ requires = [
 
 
 [project.scripts]
-pytorch_yolov4 = "pytorch_yolo.examples.demo:main"
+pytorchyolo = "pytorch_yolo.examples.demo:main"
 
 
 [project]
-name            = "pytorch_yolov4"
+name            = "pytorch_yolo"
 version         = "0.0.1"
 description     = "PyTorch, ONNX and TensorRT implementation of YOLOv4"
 readme          = "README.md"

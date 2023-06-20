@@ -10,7 +10,7 @@ import itertools
 import struct  # get_image_size
 import imghdr  # get_image_size
 
-from pytorch_yolov4 import utils
+from pytorch_yolo import utils
 
 
 def bbox_ious(boxes1, boxes2, x1y1x2y2=True):
