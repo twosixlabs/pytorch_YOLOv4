@@ -1,9 +1,8 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
-from tool.torch_utils import *
-from tool.yolo_layer import YoloLayer
-
+from pytorch_yolo.torch_utils import *
+from pytorch_yolo.yolo_layer import YoloLayer
 
 class Mish(torch.nn.Module):
     def __init__(self):

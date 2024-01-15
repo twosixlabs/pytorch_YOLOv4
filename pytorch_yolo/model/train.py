@@ -28,15 +28,14 @@ from torch.nn import functional as F
 from tensorboardX import SummaryWriter
 from easydict import EasyDict as edict
 
-from dataset import Yolo_dataset
-from cfg import Cfg
-from models import Yolov4
-from tool.darknet2pytorch import Darknet
+from pytorch_yolo.model.dataset import Yolo_dataset
+from pytorch_yolo.model.cfg import Cfg
+from pytorch_yolo.model.models import Yolov4
+from pytorch_yolo.darknet2pytorch import Darknet
 
-from tool.tv_reference.utils import collate_fn as val_collate
-from tool.tv_reference.coco_utils import convert_to_coco_api
-from tool.tv_reference.coco_eval import CocoEvaluator
-
+from pytorch_yolo.tv_reference.utils import collate_fn as val_collate
+from pytorch_yolo.tv_reference.coco_utils import convert_to_coco_api
+from pytorch_yolo.tv_reference.coco_eval import CocoEvaluator
 
 def bboxes_iou(bboxes_a, bboxes_b, xyxy=True, GIoU=False, DIoU=False, CIoU=False):
     """Calculate the Intersection of Unions (IoUs) between bounding boxes.
