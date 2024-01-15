@@ -28,7 +28,7 @@ from torch.nn import functional as F
 from tensorboardX import SummaryWriter
 from easydict import EasyDict as edict
 
-from model.dataset import Yolo_dataset
+from dataset import Yolo_dataset
 from cfg import Cfg
 from models import Yolov4
 from tool.darknet2pytorch import Darknet
