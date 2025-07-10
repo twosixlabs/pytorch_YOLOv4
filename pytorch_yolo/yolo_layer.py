@@ -155,7 +155,7 @@ def yolo_forward(output, conf_thresh, num_classes, anchors, num_anchors, scale_x
 
 
 def yolo_forward_dynamic(output, conf_thresh, num_classes, anchors, num_anchors, scale_x_y, only_objectness=1,
-                         validation=False):
+                         validation=False, explain_mode=False):
     # Output would be invalid if it does not satisfy this assert
     # assert (output.size(1) == (5 + num_classes) * num_anchors)
 
@@ -308,7 +308,10 @@ def yolo_forward_dynamic(output, conf_thresh, num_classes, anchors, num_anchors,
     # boxes: [batch, num_anchors * H * W, 1, 4]
     # confs: [batch, num_anchors * H * W, num_classes]
 
-    return boxes, confs
+    if explain_mode:
+        return boxes, cls_confs, det_confs
+    else:
+        return  boxes, confs
 
 
 class YoloLayer(nn.Module):
@@ -344,4 +347,4 @@ class YoloLayer(nn.Module):
                                            self.anchor_step:(m + 1) * self.anchor_step]
         masked_anchors = [anchor / self.stride for anchor in masked_anchors]
 
-        return yolo_forward_dynamic(output, self.thresh, self.num_classes, masked_anchors, len(self.anchor_mask), scale_x_y=self.scale_x_y)
+        return yolo_forward_dynamic(output, self.thresh, self.num_classes, masked_anchors, len(self.anchor_mask), scale_x_y=self.scale_x_y, explain_mode=self.explain_mode)

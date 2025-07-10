@@ -126,10 +126,11 @@ class EmptyModule(nn.Module):
 
 # support route shortcut and reorg
 class Darknet(nn.Module):
-    def __init__(self, cfgfile, inference=False, attack_mode=False):
+    def __init__(self, cfgfile, inference=False, attack_mode=False, explain_mode=False):
         super(Darknet, self).__init__()
         self.inference = inference
         self.attack_mode = attack_mode
+        self.explain_mode = explain_mode
         self.training = not self.inference
 
         self.blocks = parse_cfg(cfgfile)
@@ -233,7 +234,7 @@ class Darknet(nn.Module):
         if self.attack_mode or self.training:
             return out_boxes
         else:
-            return get_region_boxes(out_boxes)
+            return get_region_boxes(out_boxes,self.explain_mode)
 
     def print_network(self):
         print_cfg(self.blocks)
@@ -421,6 +422,7 @@ class Darknet(nn.Module):
                 yolo_layer.stride = prev_stride
                 yolo_layer.scale_x_y = float(block['scale_x_y'])
                 yolo_layer.attack_mode = self.attack_mode
+                yolo_layer.explain_mode = self.explain_mode
                 # yolo_layer.object_scale = float(block['object_scale'])
                 # yolo_layer.noobject_scale = float(block['noobject_scale'])
                 # yolo_layer.class_scale = float(block['class_scale'])
